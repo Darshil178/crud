@@ -1,0 +1,61 @@
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card">
+      <div class="card-body" style="overflow-y:auto;max-height: 80vh">
+        <h5 class="card-title text-center mb-4">Simple Form</h5>
+        <form [formGroup]="Form" (ngSubmit)="update?Update():storeData()">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="name" formControlName="name" id="name" placeholder="Enter your name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" formControlName="email" placeholder="Enter your email">
+          </div>
+          <div class="form-group">
+            <label for="mobile">Mobile</label>
+            <input type="text" class="form-control" id="mobile" name="mobile" formControlName="mobile" placeholder="Enter your mobile number">
+          </div>
+          <div class="form-group">
+            <label>Gender</label>
+            <div class="form-check">
+              <input class="form-check-input" name="gender" formControlName="gender" type="radio" name="gender" id="male" value="male">
+              <label class="form-check-label" for="male">Male</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" name="gender" formControlName="gender" type="radio" name="gender" id="female" value="female">
+              <label class="form-check-label" for="female">Female</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" name="gender" formControlName="gender" type="radio" name="gender" id="other" value="other">
+              <label class="form-check-label" for="other">Other</label>
+            </div>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-block" (click)="viewUser()" >{{update?'Update':'Submit'}}</button>
+  
+          <table *ngIf="userloaded">
+              <tr class="m-2">
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Mobile</th>
+                  <th>Gender</th>
+              </tr>
+              <tr *ngFor="let a of user" class="p-2">
+                  <td>{{a.userId}}</td>
+                  <td>{{a.name}}</td>
+                  <td>{{a.email}}</td>
+                  <td>{{a.mobile}}</td>
+                  <td>{{a.gender}}</td>
+                  <td><button type="button" class="btn btn-primary btn-block" (click)="deleteUser(a.userId)" >Delete</button></td>
+                  <td><button type="button" class="btn btn-primary btn-block" (click)="updateUser(a)" >Update</button></td>
+              </tr>
+
+          </table>
+
+        </form>
+        <!-- <button type="button" (click)="deleteUser()" >Delete</button> -->
+      </div>
+    </div>
+  </div>
+  
